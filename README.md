@@ -1,59 +1,69 @@
-# WeatherFrontend
+# Aether Weather Forecast Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.4.
+A simple, premium weather forecast dashboard built with Angular 22, designed with glassmorphic elements, hover feedback, shimmer loading skeletons, and interactive Celsius/Fahrenheit toggle control.
 
-## Development server
+It queries the live weather API endpoint:
+`https://sampleapi20260706g3-bvdacte9b0dvhudv.canadacentral-01.azurewebsites.net/Weatherforecast`
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🌟 Key Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular 22 Signals**: Engineered utilizing modern reactive patterns for instant, lag-free state transitions.
+- **Glassmorphic Theme**: Designed with custom CSS variables, backdrop blurs, and glow highlights.
+- **Weather Summary Badge Mapping**: Automatically color-categorizes summaries (Freezing, Cool, Mild, Hot, Scorching) with unique visual themes and custom icons.
+- **Temperature Unit Switcher**: Toggle easily between Celsius (°C) and Fahrenheit (°F).
+- **Responsive Layout**: Designed with fluid typography and a CSS grid layout, looking crisp across desktops, tablets, and phones.
+- **Automated Deployment**: Fully configured CI/CD pipeline using GitHub Actions to deploy straight to GitHub Pages.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Local Development
 
-```bash
-ng generate component component-name
-```
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. **Run Local Server**:
+   ```bash
+   npm start
+   # or
+   ng serve
+   ```
+   Open `http://localhost:4200` to view the application.
 
-```bash
-ng generate --help
-```
+3. **Production Build**:
+   ```bash
+   npm run build
+   ```
 
-## Building
+---
 
-To build the project run:
+## 🌐 GitHub Pages CI/CD Setup
 
-```bash
-ng build
-```
+This project contains a GitHub Actions workflow in `.github/workflows/deploy.yml` that builds and deploys the application automatically whenever you push code to `main` (or `master`).
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Follow these simple steps to host your application:
 
-## Running unit tests
+1. **Create Repository**:
+   Create a new public/private repository on GitHub named, for example, `weather-frontend`.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+2. **Commit and Push Code**:
+   Inside this directory, run the following commands to link your repository:
+   ```bash
+   git init
+   git add .
+   git commit -m "feat: initial commit with Angular weather app and workflow"
+   git branch -M main
+   git remote add origin https://github.com/<your-username>/<your-repo-name>.git
+   git push -u origin main
+   ```
 
-```bash
-ng test
-```
+3. **Configure Pages Settings**:
+   - Go to your repository settings page on GitHub: `Settings` -> `Pages`.
+   - Under **Build and deployment**, set **Source** to **GitHub Actions**. (Do not select Deploy from Branch, as the workflow manages this).
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4. **Verify Deployment**:
+   - Navigate to the **Actions** tab in your GitHub repository to watch the deployment run.
+   - Once completed, the deployment URL will be generated (typically `https://<your-username>.github.io/<your-repo-name>/`).
