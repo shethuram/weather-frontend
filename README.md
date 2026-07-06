@@ -1,69 +1,68 @@
-# Aether Weather Forecast Dashboard
+# Weather Forecast Dashboard (Assignment submission)
 
-A simple, premium weather forecast dashboard built with Angular 22, designed with glassmorphic elements, hover feedback, shimmer loading skeletons, and interactive Celsius/Fahrenheit toggle control.
+A lightweight weather dashboard built using **Angular 22** that consumes a public REST API and displays weather forecast records inside a responsive, clean table, with automatic cloud deployments using **GitHub Actions**.
 
-It queries the live weather API endpoint:
+---
+
+## 📌 Project Description
+
+This application represents the submission for the **Deploy an Angular Weather Application using GitHub Actions and GitHub Pages** assignment. 
+
+It retrieves live 5-day weather data from the following REST API:
 `https://sampleapi20260706g3-bvdacte9b0dvhudv.canadacentral-01.azurewebsites.net/Weatherforecast`
 
----
-
-## 🌟 Key Features
-
-- **Angular 22 Signals**: Engineered utilizing modern reactive patterns for instant, lag-free state transitions.
-- **Glassmorphic Theme**: Designed with custom CSS variables, backdrop blurs, and glow highlights.
-- **Weather Summary Badge Mapping**: Automatically color-categorizes summaries (Freezing, Cool, Mild, Hot, Scorching) with unique visual themes and custom icons.
-- **Temperature Unit Switcher**: Toggle easily between Celsius (°C) and Fahrenheit (°F).
-- **Responsive Layout**: Designed with fluid typography and a CSS grid layout, looking crisp across desktops, tablets, and phones.
-- **Automated Deployment**: Fully configured CI/CD pipeline using GitHub Actions to deploy straight to GitHub Pages.
+### Key Features Implemented:
+- **Part 1 & 2 (Component & Service)**: Refactored logic into a dedicated component (`WeatherComponent` under selector `<app-weather>`) consuming an Observable-based Angular `HttpClient` service (`WeatherService` in `weather.service.ts`).
+- **Part 3 (UI Requirements)**: Built a table showcasing columns: `Date`, `Temperature (C)`, `Temperature (F)`, and `Summary`. Includes "Loading..." messages and user-friendly connection error cards.
+- **CI/CD (Part 5 & 6)**: Configured a continuous deployment workflow under `.github/workflows/deploy.yml` triggering on push to `main` and deploying directly to GitHub Pages.
+- **Bonus 1**: Dynamic record count indicator showing the total number of forecasts (`Total Forecast Records: 5`).
+- **Bonus 2**: Conditionally binds background colors (`hot-highlight`) to table rows where `TemperatureC > 30` to visually call out extreme heat records.
+- **Bonus 3**: A manual **Refresh** action button to reload data on demand.
 
 ---
 
-## 🚀 Local Development
+## ⚙️ Project Specifications
 
-1. **Install Dependencies**:
+- **Angular Version**: 22.0.4
+- **CSS Style Guide**: Claude-style Dark Matte Minimalism
+- **Deployment URL**: [https://shethuram.github.io/weather-frontend/](https://shethuram.github.io/weather-frontend/)
+
+---
+
+## 🚀 Installation & Local Run Steps
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/shethuram/weather-frontend.git
+   cd weather-frontend
+   ```
+
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. **Run Local Server**:
+3. **Start the local server**:
    ```bash
    npm start
    # or
    ng serve
    ```
-   Open `http://localhost:4200` to view the application.
+   Open `http://localhost:4200` to view the application locally.
 
-3. **Production Build**:
+4. **Verify local production compile**:
    ```bash
    npm run build
    ```
 
 ---
 
-## 🌐 GitHub Pages CI/CD Setup
+## 🛠️ GitHub Actions Deployment Pipeline
 
-This project contains a GitHub Actions workflow in `.github/workflows/deploy.yml` that builds and deploys the application automatically whenever you push code to `main` (or `master`).
-
-Follow these simple steps to host your application:
-
-1. **Create Repository**:
-   Create a new public/private repository on GitHub named, for example, `weather-frontend`.
-
-2. **Commit and Push Code**:
-   Inside this directory, run the following commands to link your repository:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: initial commit with Angular weather app and workflow"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/<your-repo-name>.git
-   git push -u origin main
-   ```
-
-3. **Configure Pages Settings**:
-   - Go to your repository settings page on GitHub: `Settings` -> `Pages`.
-   - Under **Build and deployment**, set **Source** to **GitHub Actions**. (Do not select Deploy from Branch, as the workflow manages this).
-
-4. **Verify Deployment**:
-   - Navigate to the **Actions** tab in your GitHub repository to watch the deployment run.
-   - Once completed, the deployment URL will be generated (typically `https://<your-username>.github.io/<your-repo-name>/`).
+The workflow defined in `.github/workflows/deploy.yml` automates:
+1. Triggering on code push to the `main` branch.
+2. Checking out the repository.
+3. Setting up Node.js v22.
+4. Installing NPM dependencies using `npm ci`.
+5. Compiling Angular for production: `npx ng build --configuration production --base-href=/weather-frontend/`.
+6. Deploying the static folder `dist/weather-frontend/browser` straight to GitHub Pages.
